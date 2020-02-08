@@ -1,0 +1,108 @@
+{
+  "defaults": {
+    "support": "it@vivaconagua.org"
+  },
+  "compose": {
+    "form": {
+      "label": {
+        "recipients": "To:",
+        "fromName": "Send as:",
+        "fromMail": "Send from:",
+        "subject": "Subject:"
+      },
+      "placeholder": {
+        "recipients": "Who is receiving your mail",
+        "fromName": "As whom to send the mail",
+        "fromMail": "The mailaddress to send from",
+        "subject": "The subject of your mail"
+      },
+      "button": {
+        "submit": "Submit",
+        "reset": "Clear form"
+      }
+    }
+  },
+  "mars":{
+    "form":{
+      "label":{
+        "roleName": "Role name",
+        "crewName": "Crew name",
+        "email": "Email address",
+        "delete": "Delete",
+        "pillar": "Pillar"
+      },
+      "placeholder":{
+        "roleName": "The name of the role",
+        "crewName": "The name of the crew",
+        "email": "The email address",
+        "pillar": "No pillar"
+      },
+      "button": {
+        "submit": "Submit",
+        "reset": "Reset",
+        "show": "Show access rights"
+      },
+      "category":{
+        "add": "Add email access rights",
+        "all": "Existing email access rights"
+      }
+    }
+  },
+  "role":{
+    "supporter": "Supporter",
+    "employee": "Employee",
+    "admin": "Administrator",
+    "volunteer manager": "Volunteer Manager",
+    "pillar":{
+      "education": "Education",
+      "network": "Network",
+      "finance": "Finance",
+      "operation": "Operation"
+    }
+  },
+  "errors": {
+    "ajax": {
+      "badRequest": {
+        "header": "The server does not understand",
+        "msg": "The data you've sent to the server has been not understood. Maybe a bug has been implemented or the server runs the wrong version. Please contact @:defaults.support and describe the problem."
+      },
+      "forbidden": {
+        "header": "Forbidden",
+        "msg": "You're not allowed to do this!"
+      },
+      "notFound": {
+        "header": "Server not found",
+        "msg": "Cannot access the server and it seems to be unreachable. Please contact @:defaults.support and describe the problem."
+      },
+      "server": {
+        "header": "Ooops...",
+        "msg": "An internal error occurred! Please contact @:defaults.support and describe the problem."
+      }
+    }
+  },
+  "read": {
+    "form":{
+      "label":{
+        "sender": "Sender",
+        "senderRoleName": "Sent as",
+        "senderMailAddress": "Sent from",
+        "reciever": "Reciever",
+        "subject": "Subject",
+        "date": "Date",
+        "status": "Status",
+        "senderCrew": "Sender crew",
+        "detail": "Details"
+      },
+      "button": {
+        "show": "show emails",
+        "switchAll": "Show Emails from ",
+        "switchYes": "all",
+        "switchNo": "me"
+      },
+      "category":{
+        "all": "See all emails",
+        "detail": "read email"
+      }
+    }
+  }
+}
