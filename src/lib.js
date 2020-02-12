@@ -1,6 +1,7 @@
 import VcANotificationCenter from './components/VcANotificationCenter.vue'
 import VcaNotificationBox from './components/VcaNotificationBox.vue'
 import VcANotificationWaves from './components/VcANotificationWaves.vue'
+import VcANotificationSuggesty from './components/VcANotificationSuggesty.vue'
 
 import VueI18n from 'vue-i18n'
 import en from './lang/en.json'
@@ -44,6 +45,11 @@ VcANotificationWaves.install = function (Vue, options) {
   Vue.component('vca-notification-waves', VcANotificationWaves)
 }
 
+VcANotificationSuggesty.install = function (Vue, options) {
+  Vue = getLang(Vue, options)
+  Vue.component('vca-notification-suggesty', VcANotificationSuggesty)
+}
+
 
 // Install by default if using the script tag
 if (typeof window !== 'undefined' && window.Vue) {
@@ -60,5 +66,6 @@ export {
   VcANotificationCenter,
   VcaNotificationBox,
   VcANotificationWaves,
+  VcANotificationSuggesty,
   version
 }

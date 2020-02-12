@@ -19,7 +19,9 @@
                 <div class="card-action">
                     <div v-if='notifyMicroservice == "WAVES"'>
                         <VcANotificationWaves  :notifyObject=notifyObject></VcANotificationWaves>
-
+                    </div>
+                    <div v-if='notifyMicroservice == "SUGGESTY"'>
+                        <VcANotificationSuggesty  :notifyObject=notifyObject></VcANotificationSuggesty>
                     </div>
                 </div>
 
@@ -38,9 +40,10 @@
 <script>
 
 import VcANotificationWaves from "./VcANotificationWaves";
+import VcANotificationSuggesty from "./VcANotificationSuggesty";
 export default {
   name: 'VcANotificationBox',
-  components: {VcANotificationWaves},
+  components: {VcANotificationSuggesty, VcANotificationWaves, VcANotificationSuggesty},
   props: {
     notifyId: String,
     notifyDate: String,
