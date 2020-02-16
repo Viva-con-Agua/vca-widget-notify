@@ -218,6 +218,7 @@ export default {
           this.allNotifies.push(newNotify);
 
           var newNotifyType = newNotify.notifyType.toUpperCase();
+          console.log(newNotify);
 
           if (newNotifyType == "ACTION") {
             this.actionNotifies.push(newNotify);
