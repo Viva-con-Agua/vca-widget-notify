@@ -1,10 +1,25 @@
 <template>
     <div>
 
-        <p>Die Aktion <b>{{notifyObject.poolEventName}}</b> wurde hinzugefügt. Du erhältst diese Meldung, weil
-            du <b>{{notifyObject.poolEventFavoriteArtist}}</b> als favorisierten Künstler hinterlegt hast.
-            Die Veranstaltung findet am <b>{{notifyObject.poolEventDate}}</b> in <b>{{notifyObject.poolEventCity}}</b>
-            statt.</p>
+        <div v-if="notifyObject.poolEventRecursionDepth > 0">
+            <p>Die Veranstaltung mit dem Künstler <b>{{notifyObject.poolEventFavoriteArtist}}</b> könnte
+                dir gefallen. Die Veranstaltung findet am <b>{{notifyObject.poolEventDate}}</b> in <b>{{notifyObject.poolEventCity}}</b>
+                statt. Du erhältst diese Meldung, weil
+            du <b>{{notifyObject.poolEventArtistHeuristicName}}</b> als favorisierten Künstler hinterlegt hast. </p>
+
+        </div>
+
+
+
+        <div v-if="notifyObject.poolEventRecursionDepth == 0">
+            <p>Eine Veranstaltung mit deinem favorisierten Künstler
+                <b>{{notifyObject.poolEventFavoriteArtist}}</b> wurde hinzugefügt.
+                Die Veranstaltung findet am <b>{{notifyObject.poolEventDate}}</b> in <b>{{notifyObject.poolEventCity}}</b>
+                statt. </p>
+        </div>
+
+
+
     </div>
 
 </template>
