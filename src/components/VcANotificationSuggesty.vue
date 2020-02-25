@@ -1,6 +1,9 @@
 <template>
     <div>
 
+
+
+
         <div v-if="notifyObject.poolEventRecursionDepth > 0">
             <p>Die Veranstaltung mit dem Künstler <b>{{notifyObject.poolEventFavoriteArtist}}</b> könnte
                 dir gefallen. Die Veranstaltung findet am <b>{{notifyObject.poolEventDate}}</b> in <b>{{notifyObject.poolEventCity}}</b>

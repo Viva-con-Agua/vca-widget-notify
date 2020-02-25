@@ -17,6 +17,7 @@ function ajaxx (type, route, data, auth){
     if(auth == {}){
       auth="1";
     }
+    xhr.setRequestHeader("Content-Type", "application/json");
     xhr.setRequestHeader('Authorization', auth)
     xhr.send(JSON.stringify(data))
   })
