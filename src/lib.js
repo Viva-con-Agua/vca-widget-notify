@@ -1,5 +1,5 @@
 import VcANotificationCenter from './components/VcANotificationCenter.vue'
-import VcaNotificationBox from './components/VcaNotificationBox.vue'
+import VcaNotificationBox from './components/VcANotificationBox.vue'
 import VcANotificationWaves from './components/VcANotificationWaves.vue'
 import VcANotificationSuggesty from './components/VcANotificationSuggesty.vue'
 
