@@ -12,13 +12,32 @@ p, .cardTitle, .card-content, .card-action{
     margin-bottom: 10px !important;
 }
 
-.notSeen{
+.new{
     background-color: #ffffff !important;
 }
 
 .seen{
     background-color: #ededed !important;
 }
+
+.deleted{
+    /**display:none !important;**/
+    background-color: red !important;
+}
+
+.noNotifies{
+    padding-top:10px;
+    padding-bottom:10px;
+
+
+}
+
+.noNotifies a{
+    color:#2c3e50 !important;
+    font-size:12px !important;
+    font-weight: bold !important;
+}
+
 
 .animationTest{
     max-height: 0;

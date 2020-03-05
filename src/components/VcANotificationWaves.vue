@@ -20,7 +20,7 @@ export default {
 
   },
   mounted: function () {
-    this.$parent.$refs.refNotifyHeading.innerHTML=this.notifyObject.poolEventName;
+    this.$parent.$refs.refNotifyHeading.innerHTML = this.notifyObject.poolEventName
   }
 }
 

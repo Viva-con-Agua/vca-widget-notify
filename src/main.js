@@ -3,14 +3,16 @@ import ElementUI from 'element-ui'
 import VueI18n from 'vue-i18n'
 import App from './App.vue'
 
-import enElement from 'element-ui/lib/locale/lang/en';
-import deElement from 'element-ui/lib/locale/lang/de';
-import en from '@/lang/en.json';
-import de from '@/lang/de.json';
+import enElement from 'element-ui/lib/locale/lang/en'
+import deElement from 'element-ui/lib/locale/lang/de'
+import en from '@/lang/en.json'
+import de from '@/lang/de.json'
 
 import 'materialize-css'
 
 require('./assets/materialize.min.css')
+
+
 
 
 Vue.use(VueI18n)
@@ -22,10 +24,10 @@ const i18n = new VueI18n({
   locale: locale,
   messages: {
 
-      'en-US': Object.assign(en, enElement),
-      'de-DE': Object.assign(de, deElement),
-      'de': Object.assign(de, deElement),
-      'en': Object.assign(en, enElement)
+    'en-US': Object.assign(en, enElement),
+    'de-DE': Object.assign(de, deElement),
+    'de': Object.assign(de, deElement),
+    'en': Object.assign(en, enElement)
 
     /*
     'en-US': {}, // Object.assign(en, enElement),

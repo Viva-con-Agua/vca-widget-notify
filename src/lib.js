@@ -50,13 +50,11 @@ VcANotificationSuggesty.install = function (Vue, options) {
   Vue.component('vca-notification-suggesty', VcANotificationSuggesty)
 }
 
-
 // Install by default if using the script tag
 if (typeof window !== 'undefined' && window.Vue) {
   window.Vue.use(VcANotificationCenter)
   window.Vue.use(VcaNotificationBox)
   window.Vue.use(VcANotificationWaves)
-
 }
 
 export default VcANotificationCenter

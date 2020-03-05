@@ -1,9 +1,6 @@
 <template>
     <div>
 
-
-
-
         <div v-if="notifyObject.poolEventRecursionDepth > 0">
             <p>Die Veranstaltung mit dem Künstler <b>{{notifyObject.poolEventFavoriteArtist}}</b> könnte
                 dir gefallen. Die Veranstaltung findet am <b>{{notifyObject.poolEventDate}}</b> in <b>{{notifyObject.poolEventCity}}</b>
@@ -12,16 +9,12 @@
 
         </div>
 
-
-
         <div v-if="notifyObject.poolEventRecursionDepth == 0">
             <p>Eine Veranstaltung mit deinem favorisierten Künstler
                 <b>{{notifyObject.poolEventFavoriteArtist}}</b> wurde hinzugefügt.
                 Die Veranstaltung findet am <b>{{notifyObject.poolEventDate}}</b> in <b>{{notifyObject.poolEventCity}}</b>
                 statt. </p>
         </div>
-
-
 
     </div>
 
@@ -39,7 +32,7 @@ export default {
 
   },
   mounted: function () {
-    this.$parent.$refs.refNotifyHeading.innerHTML=this.notifyObject.poolEventName;
+    this.$parent.$refs.refNotifyHeading.innerHTML = this.notifyObject.poolEventName
   }
 }
 

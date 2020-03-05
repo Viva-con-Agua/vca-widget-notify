@@ -1,6 +1,5 @@
 
-
-function ajaxx (type, route, data, auth){
+function ajaxx (type, route, data, auth) {
   return new Promise(function (resolve, reject) {
     const xhr = new XMLHttpRequest()
     xhr.open(type, route)
@@ -14,13 +13,13 @@ function ajaxx (type, route, data, auth){
     xhr.onerror = function () {
       Promise.reject(new Error('Something went wrong'))
     }
-    if(auth == {}){
-      auth="1";
+    if (auth == {}) {
+      auth = '1'
     }
-    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader('Content-Type', 'application/json')
     xhr.setRequestHeader('Authorization', auth)
     xhr.send(JSON.stringify(data))
   })
 }
 
-export {ajaxx}
+export { ajaxx }

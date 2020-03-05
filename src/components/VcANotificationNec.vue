@@ -11,17 +11,17 @@
 
 <script>
 export default {
-  name: "VcANotificationWaves",
+  name: 'VcANotificationWaves',
   props: {
     notifyObject: {
       type: Object
     }
   },
   methods: {},
-  mounted: function() {
-    this.$parent.$refs.refNotifyHeading.innerHTML = this.notifyObject.poolEventName;
+  mounted: function () {
+    this.$parent.$refs.refNotifyHeading.innerHTML = this.notifyObject.poolEventName
   }
-};
+}
 </script>
 
 <style scoped></style>

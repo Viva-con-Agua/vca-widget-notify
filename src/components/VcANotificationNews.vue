@@ -9,17 +9,17 @@
 
 <script>
 export default {
-  name: "VcANotificationNews",
+  name: 'VcANotificationNews',
   props: {
     notifyObject: {
       type: Object
     }
   },
   methods: {},
-  mounted: function() {
-    this.$parent.$refs.refNotifyHeading.innerHTML = this.notifyObject.newsType;
+  mounted: function () {
+    this.$parent.$refs.refNotifyHeading.innerHTML = this.notifyObject.newsType
   }
-};
+}
 </script>
 
 <style scoped></style>

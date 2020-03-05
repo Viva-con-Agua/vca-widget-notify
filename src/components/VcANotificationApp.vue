@@ -10,17 +10,17 @@
 
 <script>
 export default {
-  name: "VcANotificationApp",
+  name: 'VcANotificationApp',
   props: {
     notifyObject: {
       type: Object
     }
   },
   methods: {},
-  mounted: function() {
-    this.$parent.$refs.refNotifyHeading.innerHTML = this.notifyObject.applicationState;
+  mounted: function () {
+    this.$parent.$refs.refNotifyHeading.innerHTML = this.notifyObject.applicationState
   }
-};
+}
 </script>
 
 <style scoped></style>

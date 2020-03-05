@@ -56,51 +56,50 @@
 </template>
 
 <script>
-  import VcANotificationWaves from "./VcANotificationWaves";
-  import VcANotificationCom from "./VcANotificationCom";
-  import VcANotificationNec from "./VcANotificationNec";
-  import VcANotificationApp from "./VcANotificationApp";
-  import VcANotificationNews from "./VcANotificationNews";
-  import VcANotificationSuggesty from "./VcANotificationSuggesty";
-  import {ajaxx} from "./externalJs";
+import VcANotificationWaves from './VcANotificationWaves'
+import VcANotificationCom from './VcANotificationCom'
+import VcANotificationNec from './VcANotificationNec'
+import VcANotificationApp from './VcANotificationApp'
+import VcANotificationNews from './VcANotificationNews'
+import VcANotificationSuggesty from './VcANotificationSuggesty'
+import { ajaxx } from './externalJs'
 
-  export default {
-    name: "VcANotificationBox",
-    components: {
-      VcANotificationWaves,
-      VcANotificationNec,
-      VcANotificationSuggesty,
-      VcANotificationCom,
-      VcANotificationApp,
-      VcANotificationNews
-    },
+export default {
+  name: 'VcANotificationBox',
+  components: {
+    VcANotificationWaves,
+    VcANotificationNec,
+    VcANotificationSuggesty,
+    VcANotificationCom,
+    VcANotificationApp,
+    VcANotificationNews
+  },
 
-    props: {
-      notifyId: String,
-      notifyDate: String,
-      notifyIcon: String,
-      notifyType: String,
-      notifyObject: Object,
-      notifyHeading: String,
-      notifyActionLink: String,
-      notifyStatus: String,
-      notifyMicroservice: String
-    },
+  props: {
+    notifyId: String,
+    notifyDate: String,
+    notifyIcon: String,
+    notifyType: String,
+    notifyObject: Object,
+    notifyHeading: String,
+    notifyActionLink: String,
+    notifyStatus: String,
+    notifyMicroservice: String
+  },
 
-    mounted: function () {
-    },
+  mounted: function () {
+  },
 
-    methods: {
-      changeStatusOfNotify: function (type, typeId, status) {
-
-        var qry = [];
-        qry.push({"type": type, "typeId": typeId, "status": status});
-        this.$parent.updateStatusofNotifies(qry);
-        //console.log("changeStatusOf1notify");
-        // console.log(this);
-      }
+  methods: {
+    changeStatusOfNotify: function (type, typeId, status) {
+      var qry = []
+      qry.push({ 'type': type, 'typeId': typeId, 'status': status })
+      this.$parent.updateStatusofNotifies(qry)
+      // console.log("changeStatusOf1notify");
+      // console.log(this);
     }
-  };
+  }
+}
 </script>
 
 <style scoped></style>

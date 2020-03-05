@@ -1,11 +1,15 @@
 {
-  "name": "vca-widget-notify",
+  "name": "@viva-con-agua/vca-widget-notify",
   "version": "0.1.5",
   "description": ".",
-  "author": "Martin Candrowicz",
-  "publishConfig": { "registry": "https://npm.pkg.github.com/" },
+  "author": "candrowm",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "scripts": {
     "serve": "vue-cli-service serve",
+    "servee": "vue-cli-service build --mode development",
+    "start": "VUE_APP_ENV=PRODUCTION vue-cli-service serve",
     "build": "vue-cli-service build",
     "lib": "vue-cli-service build --target lib --name vca-widget-notify src/lib.js",
     "lint": "vue-cli-service lint",
@@ -38,6 +42,8 @@
   },
   "dependencies": {
     "ajv": "^6.7.0",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
     "element-ui": "^2.4.11",
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0",
@@ -56,5 +62,19 @@
   "license": {
     "type": "AGPL-3.0-or-later",
     "url": "https://www.gnu.org/licenses/agpl.txt"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
   }
 }
