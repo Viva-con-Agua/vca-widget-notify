@@ -1,40 +1,34 @@
 <template>
   <div>
-    <div style="width: 100% !important;">
+    <div style="width: 100% !important">
       <a
         href="#"
         data-target="slide-out"
         class="sidenav-trigger"
         id="notificationCenter"
       >
-        <i class="material-icons" v-if="allNotifies.length == 0">
+        <!-- <i class="material-icons" v-if="getNewMessageCounter() == 0">
           notifications_none</i
-        >
-        <i class="material-icons" v-if="allNotifies.length > 0">
-          notifications</i
-        >
+        > -->
+        <i class="material-icons"> notifications</i>
 
-        <small id="notificationBadge">{{ getNewMessageCounter() }}</small>
+        <small id="notificationBadge" v-if="getNewMessageCounter() > 0">{{
+          getNewMessageCounter()
+        }}</small>
       </a>
 
       <div>
         <ul
           id="slide-out"
           class="sidenav"
-          style="background-color:#ededed !important;"
+          style="background-color: #ededed !important"
         >
           <div class="row" id="stickyTabBottom">
             <div class="col s12">
               <ul class>
                 <li class="col s12">
                   <div class="bottomEntry">
-                    <a
-                      href="#test3"
-                      @click="changeStatusOfAllNotifies('deleted')"
-                      >-
-                      <i class="material-icons" href="#">clear_all</i>
-                      Alle löschen
-                    </a>
+                    <a href="#">- </a>
                   </div>
                 </li>
               </ul>
@@ -45,7 +39,12 @@
             <li>
               <div class="user-view">
                 <h5
-                  style="text-align:center !important; padding-bottom: 0px !important; margin-bottom: 0px !important; margin-top:0px !important;"
+                  style="
+                    text-align: center !important;
+                    padding-bottom: 0px !important;
+                    margin-bottom: 0px !important;
+                    margin-top: 0px !important;
+                  "
                 >
                   Benachrichtigungen
                 </h5>
@@ -64,21 +63,21 @@
                 <li class="tab col s3">
                   <a href="#tabAction">
                     <i class="material-icons" href="#">public</i>
-                    Aktion
+                    Projekte
                   </a>
                 </li>
 
                 <li class="tab col s3">
                   <a href="#tabMessage">
                     <i class="material-icons" href="#">chat</i>
-                    Nachricht
+                    Soziales
                   </a>
                 </li>
 
                 <li class="tab col s3">
                   <a href="#tabDate">
                     <i class="material-icons" href="#">date_range</i>
-                    Termin
+                    Aktionen
                   </a>
                 </li>
               </ul>
@@ -97,6 +96,7 @@
                 :notifyDate="notify.notifyDate"
                 :notifyMicroservice="notify.notifyMicroservice"
                 :notifyObject="notify.notifyObject"
+                :notifyReason="notify.notifyReason"
                 :key="notify.notifyId"
               ></VcANotificationBox>
             </div>
@@ -113,6 +113,7 @@
                 :notifyDate="notify.notifyDate"
                 :notifyMicroservice="notify.notifyMicroservice"
                 :notifyObject="notify.notifyObject"
+                :notifyReason="notify.notifyReason"
                 v-bind:key="notify.notifyId"
               ></VcANotificationBox>
             </div>
@@ -128,6 +129,7 @@
                 :notifyDate="notify.notifyDate"
                 :notifyMicroservice="notify.notifyMicroservice"
                 :notifyObject="notify.notifyObject"
+                :notifyReason="notify.notifyReason"
                 :key="notify.notifyId"
               ></VcANotificationBox>
             </div>
@@ -143,12 +145,13 @@
                 :notifyDate="notify.notifyDate"
                 :notifyMicroservice="notify.notifyMicroservice"
                 :notifyObject="notify.notifyObject"
+                :notifyReason="notify.notifyReason"
                 :key="notify.notifyId"
               ></VcANotificationBox>
             </div>
           </div>
 
-          <div style="height:80px !important;"></div>
+          <div style="height: 80px !important"></div>
         </ul>
       </div>
     </div>
@@ -188,54 +191,58 @@ export default {
     } else {
       auth = {};
     }
-    //console.log(this.$cookies.get('access_token'));
-    const oauth = process.env.VUE_APP_BACKEND_DEV;
-    console.log(oauth);
+    const backend = process.env.VUE_APP_BACKEND_DEV;
+    console.log(backend);
 
     axios
-      .get(`${oauth}/events/notify`, {
-        // .get("http://localhost:8005/v1/events/notify", {
+      .get(`${backend}/notifications`, {
         headers: {
           authorization: auth,
         },
       })
       .then(
-        function(events) {
-          console.log(events.data);
+        function(result) {
+          console.log(result.data);
 
-          for (var i = 0; i < events.data.length; i++) {
-            var notiObj = events.data[i].notifyParameters;
+          for (var i = 0; i < result.data.length; i++) {
+            var notiObj = result.data[i];
 
             var newNotify = {
-              notifyId: i.toString(),
-              notifyDate: events.data[i].notifyCreatedAt,
-              notifyObject: notiObj,
-              notifyIcon: "public",
-              notifyType: events.data[i].notifyType,
+              notifyId: notiObj.notification._id,
+              notifyDate: notiObj.notification.date,
+              notifyObject: notiObj.notification,
+              notifyIcon: "",
+              notifyType: notiObj.notifytype,
               notifyHeading: "",
-              notifyActionLink: events.data[i].notifyActionLink,
-              notifyStatus: events.data[i].notifyStatus,
-              notifyMicroservice: events.data[i].notifyMicroservice,
+              notifyActionLink: "#",
+              notifyStatus: notiObj.status,
+              notifyMicroservice: notiObj.notification.Microservice,
+              notifyReason: notiObj.reason,
             };
 
-            this.allNotifies.push(newNotify);
-            console.log(newNotify);
+            console.log(newNotify.notifyMicroservice);
 
-            var newNotifyType = newNotify.notifyType.toUpperCase();
-            //console.log(newNotify);
-
-            if (newNotifyType == "ACTION") {
+            if (newNotify.notifyType == "Spenden & Projekte") {
+              newNotify.notifyIcon = "public";
               this.actionNotifies.push(newNotify);
             }
 
-            if (newNotifyType == "MESSAGE") {
+            if (newNotify.notifyType == "Crew Info & Soziales") {
+              newNotify.notifyIcon = "chat";
               this.messageNotifies.push(newNotify);
             }
 
-            if (newNotifyType == "DATE") {
+            if (newNotify.notifyType == "Aktionen") {
+              newNotify.notifyIcon = "date_range";
               this.dateNotifies.push(newNotify);
             }
+
+            this.allNotifies.push(newNotify);
           }
+
+          console.log(this.dateNotifies);
+          console.log(this.messageNotifies);
+          console.log(this.actionNotifies);
         }.bind(this)
       )
       .catch(function(error) {
@@ -243,18 +250,30 @@ export default {
 
         alert(error.response.data.message);
       });
+
+    var elems = document.querySelectorAll(".sidenav");
+    var ref = this;
+
+    M.Sidenav.init(elems, {
+      edge: "right",
+      onCloseEnd: function() {
+        ref.changeToSeen();
+      },
+    });
+
+    // document.addEventListener("click", function (e) {
+    //   if (e.target.className.indexOf("closeCard") != -1) {
+    //     var classNamesArray = e.target.className.split(" ");
+    //     classNamesArray[0].replace("closeCard", "");
+    //   }
+    // });
+
+    window.onload = function() {
+      var elem = document.querySelector(".tabs");
+      var options = {};
+      M.Tabs.init(elem, options);
+    };
   },
-  //   ajaxx("GET", "http://localhost:8005/v1/events/notify", {}, auth)
-  //     .then(
-  //       function(events) {
-
-  //       }.bind(this)
-  //     )
-  //     .fail(function(jqXHR, textStatus, errorThrown) {
-  //       console.log("Promise catch: " + textStatus);
-  //     });
-  // },
-
   methods: {
     getNewMessageCounter: function() {
       var newMessageCounter = 0;
@@ -265,157 +284,111 @@ export default {
       }
       return newMessageCounter;
     },
-    // testfunction: function() {
-    //   console.log("TEST");
-    // },
-    // refreshStatusOfEntry: function(notifyEntry) {
-    //   var notifyType = notifyEntry.type;
-    //   var typeId = notifyEntry.typeId;
-    //   var notifyStatus = notifyEntry.status;
-    //   console.log("neuer Status", notifyStatus);
-    //   console.log("refreshStatus");
 
-    //   // ALL NOTIFIES
-    //   var newAllNotifies = [];
-    //   for (var x = 0; x < this.allNotifies.length; x++) {
-    //     if (
-    //       this.allNotifies[x].notifyObject.type == notifyType &&
-    //       this.allNotifies[x].notifyObject.typeId == typeId
-    //     ) {
-    //       this.allNotifies[x].notifyStatus = notifyStatus;
+    refreshStatusOfEntry: function(id, status) {
+      var type;
+      for (var x = 0; x < this.allNotifies.length; x++) {
+        if (this.allNotifies[x].notifyId == id) {
+          type = this.allNotifies[x].notifyType;
+          if (status == "deleted") {
+            this.allNotifies.splice(x, 1);
+          } else {
+            this.allNotifies[x].notifyStatus = status;
+          }
+        }
+      }
 
-    //       if (!notifyStatus == "deleted") {
-    //         newAllNotifies.push(this.allNotifies[x]);
-    //       }
-    //     } else {
-    //       newAllNotifies.push(this.allNotifies[x]);
-    //     }
-    //   }
-    //   this.allNotifies = newAllNotifies;
+      console.log("refreshStatus");
 
-    //   // ACTION NOTIFIES
-    //   var newActionNotifies = [];
-    //   for (var x = 0; x < this.actionNotifies.length; x++) {
-    //     if (
-    //       this.actionNotifies[x].notifyObject.type == notifyType &&
-    //       this.actionNotifies[x].notifyObject.typeId == typeId
-    //     ) {
-    //       this.actionNotifies[x].notifyStatus = notifyStatus;
+      if (type == "action") {
+        for (x = 0; x < this.actionNotifies.length; x++) {
+          if (this.actionNotifies[x].notifyId == id) {
+            type = this.actionNotifies[x].notifyType;
+            if (status == "deleted") {
+              this.actionNotifies.splice(x, 1);
+            } else {
+              this.actionNotifies[x].notifyStatus = status;
+            }
+          }
+        }
+      } else if (type == "message") {
+        for (x = 0; x < this.messageNotifies.length; x++) {
+          if (this.messageNotifies[x].notifyId == id) {
+            type = this.messageNotifies[x].notifyType;
+            if (status == "deleted") {
+              this.messageNotifies.splice(x, 1);
+            } else {
+              this.messageNotifies[x].notifyStatus = status;
+            }
+          }
+        }
+      } else if (type == "date") {
+        for (x = 0; x < this.dateNotifies.length; x++) {
+          if (this.dateNotifies[x].notifyId == id) {
+            type = this.dateNotifies[x].notifyType;
+            if (status == "deleted") {
+              this.dateNotifies.splice(x, 1);
+            } else {
+              this.dateNotifies[x].notifyStatus = status;
+            }
+          }
+        }
+      }
+    },
+    updateStatusofNotifies: function(id, status) {
+      const backend = process.env.VUE_APP_BACKEND_DEV;
 
-    //       if (!notifyStatus == "deleted") {
-    //         newActionNotifies.push(this.actionNotifies[x]);
-    //       }
-    //     } else {
-    //       newActionNotifies.push(this.actionNotifies[x]);
-    //     }
-    //   }
-    //   this.actionNotifies = newActionNotifies;
+      axios
+        .post(`${backend}/updateStatus`, {
+          ids: [id],
+          status: status,
+          user: this.$cookies.get("user_id"),
+        })
+        .then(
+          function(response) {
+            console.log(response.data);
+          }.bind(this)
+        )
+        .catch((e) => {
+          console.log(e);
+        });
+      this.refreshStatusOfEntry(id, status);
+    },
+    changeToSeen: function() {
+      console.log("SEEN");
+      var ids = [];
+      for (var x = 0; x < this.allNotifies.length; x++) {
+        this.allNotifies[x].notifyStatus = "seen";
+        ids.push(this.allNotifies[x].notifyId);
+      }
+      for (x = 0; x < this.actionNotifies.length; x++) {
+        this.actionNotifies[x].notifyStatus = "seen";
+      }
+      for (x = 0; x < this.messageNotifies.length; x++) {
+        this.messageNotifies[x].notifyStatus = "seen";
+      }
+      for (x = 0; x < this.dateNotifies.length; x++) {
+        this.dateNotifies[x].notifyStatus = "seen";
+      }
 
-    //   // MESSAGE NOTIFIES
-    //   var newMessageNotifies = [];
-    //   for (var x = 0; x < this.messageNotifies.length; x++) {
-    //     if (
-    //       this.messageNotifies[x].notifyObject.type == notifyType &&
-    //       this.messageNotifies[x].notifyObject.typeId == typeId
-    //     ) {
-    //       this.messageNotifies[x].notifyStatus = notifyStatus;
-
-    //       if (!notifyStatus == "deleted") {
-    //         newMessageNotifies.push(this.messageNotifies[x]);
-    //       }
-    //     } else {
-    //       newMessageNotifies.push(this.messageNotifies[x]);
-    //     }
-    //   }
-    //   this.messageNotifies = newMessageNotifies;
-
-    //   // DATE NOTIFIES
-    //   var newDateNotifies = [];
-    //   for (var x = 0; x < this.dateNotifies.length; x++) {
-    //     if (
-    //       this.dateNotifies[x].notifyObject.type == notifyType &&
-    //       this.dateNotifies[x].notifyObject.typeId == typeId
-    //     ) {
-    //       this.dateNotifies[x].notifyStatus = notifyStatus;
-
-    //       if (!notifyStatus == "deleted") {
-    //         newDateNotifies.push(this.dateNotifies[x]);
-    //       }
-    //     } else {
-    //       newDateNotifies.push(this.dateNotifies[x]);
-    //     }
-    //   }
-    //   this.dateNotifies = newDateNotifies;
-    // },
-    // updateStatusofNotifies: function(qry) {
-    //   var request = "http://localhost:8005/v1/events/";
-    //   ajaxx("DELETE", request, qry).then(
-    //     function(events) {
-    //       if (events) {
-    //         if (events.success) {
-    //           for (var x = 0; x < qry.length; x++) {
-    //             // refreshStatusOfEntry(qry[x]);
-    //             //refreshStatusOfEntry(qry[x]);
-    //             this.refreshStatusOfEntry(qry[x]);
-    //           }
-
-    //           /*
-    //           if(status="deleted"){
-    //             this.allNotifies = [];
-    //             this.dateNotifies = [];
-    //             this.actionNotifies = [];
-    //             this.messageNotifies = [];
-    //           } else {
-    //             for(var x = 0; x < this.allNotifies.length; x++){
-    //               this.allNotifies[x].notifyStatus = newStatus;
-    //             }
-    //           }
-    //           */
-    //         }
-    //       }
-    //     }.bind(this)
-    // );
+      // const backend = process.env.VUE_APP_BACKEND_DEV;
+      // axios
+      //   .post(`${backend}/events/updateStatus`, {
+      //     ids: ids,
+      //     status: "seen",
+      //     user: this.$cookies.get("user_id"),
+      //   })
+      //   .then(
+      //     function (response) {
+      //       console.log(response.data);
+      //     }.bind(this)
+      //   )
+      //   .catch((e) => {
+      //     console.log(e);
+      //   });
+    },
   },
-
-  // changeStatusOfAllNotifies: function(newStatus) {
-  //   var qry = [];
-  //   for (var x = 0; x < this.allNotifies.length; x++) {
-  //     qry.push({
-  //       type: this.allNotifies[x].notifyObject.type,
-  //       typeId: this.allNotifies[x].notifyObject.typeId,
-  //       status: newStatus
-  //     });
-  //   }
-  //   console.log(qry.length);
-  //   this.updateStatusofNotifies(qry);
-  // }
-  // }
 };
-
-function ready(fn) {
-  var d = document;
-  d.readyState == "loading" ? d.addEventListener("DOMContentLoaded", fn) : fn();
-}
-
-ready(function() {
-  var elems = document.querySelectorAll(".sidenav");
-  M.Sidenav.init(elems, {
-    edge: "right",
-  });
-
-  document.addEventListener("click", function(e) {
-    if (e.target.className.indexOf("closeCard") != -1) {
-      var classNamesArray = e.target.className.split(" ");
-      classNamesArray[0].replace("closeCard", "");
-    }
-  });
-
-  window.onload = function() {
-    var elem = document.querySelector(".tabs");
-    var options = {};
-    M.Tabs.init(elem, options);
-  };
-});
 </script>
 
 <style></style>

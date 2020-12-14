@@ -1,7 +1,14 @@
 <template>
   <div>
-    <!--<p>{{ authUrlDev }}</p>-->
     <a
+      v-if="!this.$cookies.get('access_token')"
+      class="profile-item"
+      style="text-decoration: none"
+      :href="`${redirectDev}`"
+    >
+      <div>{{ "LOGIN" }}</div>
+    </a>
+    <!--<a
       v-if="!this.$cookies.get('access_token')"
       class="profile-item"
       style="text-decoration: none;"
@@ -20,14 +27,12 @@
       <div>
         login
       </div>
-    </a>
+    </a>-->
 
-    <div v-else style="padding:50px 0px 0px 0px;">
+    <div v-else style="padding: 50px 0px 0px 0px">
       <!--<div>Access-Token: {{ this.$cookies.get("access_token") }}</div>-->
 
-      <VcANotificationCenter>
-        VcA information box
-      </VcANotificationCenter>
+      <VcANotificationCenter> VcA information box </VcANotificationCenter>
 
       <br />
     </div>
@@ -35,8 +40,9 @@
 </template>
 
 <script>
-import VcANotificationCenter from "../components/VcANotificationCenter";
+// import VcANotificationCenter from "../components/VcANotificationCenter";
 import vueCookies from "vue-cookies";
+import { VcANotificationCenter } from "vca-widget-notify";
 
 import Vue from "vue";
 

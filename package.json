@@ -8,32 +8,39 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@viva-con-agua/vca-widget-notify": "file:../vca-widget-notify",
     "autoprefixer": "^9.8.0",
     "axios": "^0.19.2",
     "bootstrap": "^4.5.2",
     "bootstrap-vue": "^2.16.0",
     "colorette": "^1.2.0",
     "core-js": "^3.6.5",
+    "dateformat": "^3.0.3",
     "dns": "^0.2.2",
     "element-ui": "^2.13.2",
     "materialize-css": "^1.0.0",
     "nodemailer": "^6.4.11",
     "vca-widget-base": "^0.1.5",
-    "vue": "^2.6.11",
+    "vca-widget-notify": "^0.1.5",
+    "vue": "^2.6.12",
+    "vue-cli": "^2.9.6",
     "vue-cookies": "^1.7.3",
     "vue-google-autocomplete": "^1.1.0",
     "vue-navigation-bar": "^4.0.2",
     "vue-router": "^3.4.3",
     "vue-simple-alert": "^1.1.1",
-    "vuetify": "^2.3.10"
+    "vuetify": "^2.3.17"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "^4.5.0",
     "@vue/cli-plugin-eslint": "^4.5.0",
     "@vue/cli-service": "^4.5.0",
     "babel-eslint": "^10.1.0",
+    "deepmerge": "^4.2.2",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "sass": "^1.29.0",
+    "sass-loader": "^10.1.0",
     "vue-template-compiler": "^2.6.11"
   },
   "eslintConfig": {
