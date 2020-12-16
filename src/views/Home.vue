@@ -40,16 +40,16 @@
 </template>
 
 <script>
-// import VcANotificationCenter from "../components/VcANotificationCenter";
+import VcANotificationCenter from "../components/VcANotificationCenter";
 import vueCookies from "vue-cookies";
-import { VcANotificationCenter } from "vca-widget-notify";
+// import app from "vca-widget-notify-new";
 
 import Vue from "vue";
 
 Vue.use(vueCookies);
 
 export default {
-  name: "app",
+  name: "home",
   components: {
     // VcANotificationWaves,
     VcANotificationCenter,

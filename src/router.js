@@ -5,7 +5,6 @@ import Send from "./views/Send.vue";
 import User from "./views/User.vue";
 import SetUp from "./views/SetUp.vue";
 
-
 Vue.use(Router);
 
 export default new Router({
@@ -31,6 +30,5 @@ export default new Router({
       name: "SetUp",
       component: SetUp,
     },
-
   ],
 });
