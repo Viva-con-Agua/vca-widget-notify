@@ -45,7 +45,7 @@
     "dotenv": "^8.2.0",
     "dotenv-expand": "^5.1.0",
     "element-ui": "^2.4.11",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "materialize-css": "^1.0.0",
     "vue": "^2.6.10",
     "vue-cookies": "^1.6.1",
