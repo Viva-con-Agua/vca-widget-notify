@@ -2,7 +2,7 @@
   <div>
     <p>
       Deine Bewerbung zum Event
-      <b>{{ notifyObject.poolEventName }}</b> wurde geprüft. DDer neue Status
+      <b>{{ notifyObject.poolEventName }}</b> wurde geprüft. Der neue Status
       ist <b>{{ notifyObject.applicationState }}</b>
     </p>
   </div>
