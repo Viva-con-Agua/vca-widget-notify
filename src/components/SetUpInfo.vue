@@ -36,12 +36,10 @@
   </el-card>
 </template>
 
-   <script>
+<script>
 import "../assets/materialize.min.css";
 
 export default {
   name: "SetUpInfo",
 };
 </script>
-             
-            

@@ -51,12 +51,13 @@ import "vca-widget-base/dist/vca-widget-base.css";
 import "../assets/pool_event_style.css";
 import "../assets/app2.css";
 import "../assets/materialize.min.css";
-import axios from "axios";
 import SetUpInfo from "../components/SetUpInfo";
 import SetUpTest from "../components/SetUpTest";
 import SetUpTypes from "../components/SetUpTypes";
 import SetUpPipelines from "../components/SetUpPipelines";
 import SetUpWidget from "../components/SetUpWidget";
+import api from "../assets/apis.js";
+
 
 export default {
   name: "Send",
@@ -89,10 +90,7 @@ export default {
     };
   },
   mounted: function() {
-    if (!this.$cookies.get("access_token")) {
-      this.$router.push({ name: "home" });
-    }
-    this.config = this.$cookies.get("access_token");
+
   },
   methods: {
     submitForm() {
@@ -100,16 +98,16 @@ export default {
         this.nextPage();
         this.status = false;
       } else if (this.page == 2) {
+        console.log('PAGE2');
+                console.log(this.Microservice);
+
         this.nextPage();
-        axios
+        api.call
           .post(
             `${this.backend}/info`,
             {
               name: this.Microservice,
             },
-            {
-              headers: { Authorization: `Bearer ${this.config}` },
-            }
           )
           .then(
             function(response) {
@@ -156,14 +154,13 @@ export default {
           }
         }
       } else if (this.page == 3) {
-        axios
+        api.call
           .post(
             `${this.backend}/saveCategories`,
             {
               Microservice: this.Microservice,
               types: this.categories,
             },
-            { headers: { Authorization: `Bearer ${this.config}` } }
           )
           .then()
           .catch((e) => {
@@ -173,7 +170,7 @@ export default {
       } else if (this.page == 4) {
         console.log(this.missing);
 
-        axios
+        api.call
           .post(
             `${this.backend}/saveConditions`,
             {
@@ -182,7 +179,6 @@ export default {
               types: this.notifytypes,
               missing: this.missing,
             },
-            { headers: { Authorization: `Bearer ${this.config}` } }
           )
           .then()
           .catch((e) => {

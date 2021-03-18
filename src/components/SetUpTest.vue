@@ -42,7 +42,7 @@
 import "vca-widget-base/dist/vca-widget-base.css";
 import { Input, Form } from "element-ui";
 import "../assets/pool_event_style.css";
-import axios from "axios";
+import api from "../assets/apis.js";
 
 export default {
   name: "SetUpTest",
@@ -122,16 +122,13 @@ export default {
       console.log(backend);
       this.config = this.$cookies.get("access_token");
 
-      axios
+      api.call
         .post(
           `${backend}/testAPI`,
           {
             name: this.form.name,
             api: this.form.api,
           },
-          {
-            headers: { Authorization: `Bearer ${this.config}` },
-          }
         )
         .then((response) => {
           //   console.log(response);

@@ -103,7 +103,6 @@ import SetUpFilterEntry from "../components/SetUpFilterEntry";
 import { VcABox } from "vca-widget-base";
 import "vca-widget-base/dist/vca-widget-base.css";
 import "../assets/pool_event_style.css";
-// import axios from "axios";
 import "../assets/app2.css";
 import "../assets/materialize.min.css";
 

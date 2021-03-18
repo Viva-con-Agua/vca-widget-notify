@@ -9,7 +9,7 @@
       >
         <VcAColumn>
           <VcABox :expand="true" :first="true" title="API's">
-            <ul style="display: flex;">
+            <!-- <ul style="display: flex;">
               <li>
                 <el-switch
                   :active-value="1"
@@ -22,7 +22,7 @@
                   <el-input v-model="form.email"></el-input>
                 </el-form-item>
               </li>
-            </ul>
+            </ul> -->
             <ul style="display: flex;">
               <li>
                 <el-switch
@@ -127,10 +127,11 @@ export default {
             console.log("Push");
             this.sendPush();
           }
-          if (this.form.email_send) {
-            console.log("Email");
-            this.sendEmail();
-          }
+          // if (this.form.email_send) {
+          //   console.log("Email");
+          //   this.sendEmail();
+          // }
+          
         }
       });
     },

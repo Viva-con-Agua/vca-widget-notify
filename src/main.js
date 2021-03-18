@@ -8,10 +8,6 @@ Vue.use(ElementUI);
 
 Vue.config.productionTip = false;
 
-import "materialize-css";
-
-require("./assets/materialize.min.css");
-
 new Vue({
   router,
   render: (h) => h(App),

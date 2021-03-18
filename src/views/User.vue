@@ -1,25 +1,23 @@
 <template
   ><div>
-    <!--<Usersetting> VcA information box </Usersetting>-->
+    <UserContactData> VcA information box </UserContactData>
 
-    <Userfilter> VcA information box </Userfilter>
+    <UserSubscribtions> VcA information box </UserSubscribtions>
   </div>
 </template>
 
 <script>
-import Userfilter from "../components/Userfilter";
-// import Usersetting from "../components/Usersetting";
+import UserSubscribtions from "../components/UserSubscribtions";
+import UserContactData from "../components/UserContactData";
 
 export default {
   name: "User",
   components: {
-    Userfilter,
-    // Usersetting,
+    UserSubscribtions,
+    UserContactData,
   },
   mounted: function() {
-    if (!this.$cookies.get("access_token")) {
-      this.$router.push({ name: "home" });
-    }
+
   },
 };
 </script>

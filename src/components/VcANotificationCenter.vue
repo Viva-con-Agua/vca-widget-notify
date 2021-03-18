@@ -7,9 +7,6 @@
         class="sidenav-trigger"
         id="notificationCenter"
       >
-        <!-- <i class="material-icons" v-if="getNewMessageCounter() == 0">
-          notifications_none</i
-        > -->
         <i class="material-icons"> notifications</i>
 
         <small id="notificationBadge" v-if="getNewMessageCounter() > 0">{{
@@ -163,8 +160,7 @@ import M from "materialize-css";
 import "../assets/materialize.min.css";
 import "../assets/app2.css";
 import VcANotificationBox from "./VcANotificationBox";
-import axios from "axios";
-// import Vue from "vue";
+import api from "../assets/apis.js";
 
 export default {
   name: "VcANotificationCenter",
@@ -184,21 +180,11 @@ export default {
     };
   },
   mounted: function() {
-    //console.log(this.$i18n.t);
-    var auth;
-    if (this.$cookies.get("access_token")) {
-      auth = "Bearer " + this.$cookies.get("access_token");
-    } else {
-      auth = {};
-    }
     const backend = process.env.VUE_APP_BACKEND_DEV;
     console.log(backend);
 
-    axios
+    api.call
       .get(`${backend}/notifications`, {
-        headers: {
-          authorization: auth,
-        },
       })
       .then(
         function(result) {
@@ -261,12 +247,12 @@ export default {
       },
     });
 
-    // document.addEventListener("click", function (e) {
-    //   if (e.target.className.indexOf("closeCard") != -1) {
-    //     var classNamesArray = e.target.className.split(" ");
-    //     classNamesArray[0].replace("closeCard", "");
-    //   }
-    // });
+    document.addEventListener("click", function (e) {
+      if (e.target.className.indexOf("closeCard") != -1) {
+        var classNamesArray = e.target.className.split(" ");
+        classNamesArray[0].replace("closeCard", "");
+      }
+    });
 
     window.onload = function() {
       var elem = document.querySelector(".tabs");
@@ -338,11 +324,10 @@ export default {
     updateStatusofNotifies: function(id, status) {
       const backend = process.env.VUE_APP_BACKEND_DEV;
 
-      axios
+      api.call
         .post(`${backend}/updateStatus`, {
           ids: [id],
           status: status,
-          user: this.$cookies.get("user_id"),
         })
         .then(
           function(response) {

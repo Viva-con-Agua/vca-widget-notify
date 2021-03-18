@@ -1,13 +1,15 @@
 <template>
   <div>
-    <a
-      v-if="!this.$cookies.get('access_token')"
+    <!-- <a
+      v-if="!this.$cookies.get('io')"
       class="profile-item"
       style="text-decoration: none"
       :href="`${redirectDev}`"
     >
-      <div>{{ "LOGIN" }}</div>
-    </a>
+      <div>
+        {{ "LOGIN" }}
+      </div>
+    </a> -->
     <!--<a
       v-if="!this.$cookies.get('access_token')"
       class="profile-item"
@@ -29,24 +31,27 @@
       </div>
     </a>-->
 
-    <div v-else style="padding: 50px 0px 0px 0px">
-      <!--<div>Access-Token: {{ this.$cookies.get("access_token") }}</div>-->
 
       <VcANotificationCenter> VcA information box </VcANotificationCenter>
 
       <br />
     </div>
-  </div>
 </template>
 
+<!-- <script src="https://unpkg.com/vue"></script>
+<script src="node_modules/heart-spinner/dist/heart-spinner.js"></script> -->
 <script>
 import VcANotificationCenter from "../components/VcANotificationCenter";
+// import Spinner from "heart-spinner";
+
+// import VcANotificationCenter from "vca-widget-notify-new";
 import vueCookies from "vue-cookies";
 // import app from "vca-widget-notify-new";
 
 import Vue from "vue";
-
 Vue.use(vueCookies);
+
+// console.log(this.$cookies.get("access_token"));
 
 export default {
   name: "home",
@@ -57,19 +62,11 @@ export default {
   },
   data() {
     return {
-      isDev: process.env.VUE_APP_ENV === "dev",
-      authUrlDev: process.env.VUE_APP_OAUTH_DEV,
-      authUrlProduction: process.env.VUE_APP_OAUTH_PRODUCTION,
-      clientIdDev: process.env.VUE_APP_CLIENT_ID_DEV,
-      clientIdProduction: process.env.VUE_APP_CLIENT_ID_PRODUCTION,
-      redirectDev: process.env.VUE_APP_REDIRECT_DEV,
-      redirectProduction: process.env.VUE_APP_REDIRECT_PRODUCTION,
-      frontendDev: process.env.VUE_APP_FRONTEND_DEV,
-      frontendProduction: process.env.VUE_APP_FRONTEND_PRODUCTION,
+
     };
   },
   mounted() {
-    console.log(process.env.VUE_APP_ENV);
+
   },
 };
 </script>
